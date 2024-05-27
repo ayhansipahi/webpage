@@ -26,24 +26,32 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning >
 
       <body className={cn(
           "min-h-screen bg-background font-sans antialiased",
           fontSans.variable
       )}>
-        <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-        >
+      <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+      >
+
+        <div className="relative flex flex-col h-screen">
+
           <Header/>
+          <main className="container mx-auto max-w-7xl pt-16 px-6 flex-grow">
+
             {children}
+          </main>
+
           <Footer/>
-        </ThemeProvider>
-        <Analytics />
+        </div>
+      </ThemeProvider>
+      <Analytics/>
       </body>
     </html>
-  );
+);
 }
